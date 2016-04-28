@@ -12,7 +12,7 @@ namespace SevenSearch
         public App()
         {
             // The root page of your application
-            MainPage = new ListViewPage();
+            MainPage = new ListViewPage("7-11店鋪資訊查詢結果");
         }
 
         protected override void OnStart()
