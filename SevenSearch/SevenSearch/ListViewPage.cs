@@ -59,11 +59,8 @@ namespace SevenSearch
 
             var defaultData = new List<StoreData>
             {
-                new StoreData {Name = "全家大安店", Addr = "台北市大安區大安路一段20號", Tel = "02-27117896"},
-                new StoreData {Name = "全家仁慈店", Addr = "台北市大安區仁愛路四段48巷6號", Tel = "02-27089002"},
-                new StoreData {Name = "全家明曜店", Addr = "台北市大安區仁愛路四段151巷34號", Tel = "02-27780326"},
-                new StoreData {Name = "全家國泰店", Addr = "台北市大安區仁愛路四段266巷15弄10號", Tel = "02-27542056"},
-                new StoreData {Name = "全家忠愛店", Addr = "台北市大安區仁愛路四段27巷43號", Tel = "02-27314580"}
+                new StoreData {Name = "大台", Addr = "台北市大安區羅斯福路3段283巷14弄16號1樓", Tel = "(02)23636229"},
+                new StoreData {Name = "大安", Addr = "台北市大安區大安路1段77號B1樓(東區地下街)", Tel = "(02)87728951"},
             };
 
             BindListView(defaultData);
@@ -74,9 +71,7 @@ namespace SevenSearch
             var result = new List<SevenStore>();
 
             var resultData = await web_api_.GetDataAsync(city_contect_.Text, area_contect_.Text);
-            Debug.WriteLine("===================resultData=========================");
-            Debug.WriteLine(resultData);
-            Debug.WriteLine("===================resultData=========================");
+
             if (string.IsNullOrWhiteSpace(resultData) == false)
             {
                 var xdoc = XDocument.Parse(resultData, LoadOptions.None);
@@ -104,6 +99,7 @@ namespace SevenSearch
                 ItemTemplate = new DataTemplate(typeof(ListViewCell))
             };
 
+            listView.IsPullToRefreshEnabled = false;
             listView.ItemTapped += (sender, e) =>
             {
                 var baseUrl = "https://www.google.com.tw/maps/place/";
